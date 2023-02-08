@@ -47,9 +47,10 @@ INSTALLED_APPS = [
     # installed app
     'rest_framework',
 
-    # custom app
+    # my apps
     'accounts',
     'core',
+    'medias'
 ]
 
 MIDDLEWARE = [
