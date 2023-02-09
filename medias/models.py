@@ -11,8 +11,8 @@ class Media(BaseModel):
         Movie = 'movie', _('Movie')
         Series = 'series', _('Series')
 
-    title = models.CharField(max_length=200, verbose_name=_('Media'))
-    plot = models.TextField(verbose_name=_('Synopsis'), blank=True)
+    title = models.CharField(max_length=200, verbose_name=_('Media title'))
+    plot = models.TextField(verbose_name=_('Plot'), blank=True)
     language = models.CharField(max_length=30, verbose_name=_('Language'), blank=True)
     region = models.CharField(max_length=30, verbose_name=_('Region'), blank=True)
     runtime = models.CharField(max_length=30, verbose_name=_('Runtime'), blank=True)
