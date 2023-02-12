@@ -46,6 +46,11 @@ INSTALLED_APPS = [
 
     # installed app
     'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     # my apps
     'accounts',
@@ -164,3 +169,32 @@ AUTH_USER_MODEL = 'accounts.User'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to log-in by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# DRF configs
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'core.api.filters.OrderingFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ]
+}
