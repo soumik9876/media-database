@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from medias.models import Media, Genre
+from medias.models import Media, Genre, UserMedia
 
 
 class BaseMediaSerializer(serializers.ModelSerializer):
@@ -29,3 +29,14 @@ class BaseGenreSerializer(serializers.ModelSerializer):
 
     def get_media_count(self, obj: Genre):
         return obj.medias.count()
+
+
+class BaseUserMediaSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserMedia
+        fields = '__all__'
+
+    def get_user(self, obj):
+        return self.context.get('request').user

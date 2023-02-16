@@ -1,6 +1,6 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIView, get_object_or_404
 
-from medias.api.base.serializers import BaseMediaBriefResponseSerializer, BaseMediaSerializer
+from medias.api.base.serializers import BaseMediaBriefResponseSerializer, BaseMediaSerializer, BaseUserMediaSerializer
 from medias.api.filters import MediaFilter
 from medias.models import Media
 
@@ -24,4 +24,8 @@ class BaseMediaRetrieveAPIView(RetrieveAPIView):
         return get_object_or_404(Media, id=query.get('id'))
 
 
-# class BaseUserMediaListCreateAPIView(ListCreateAPIView):
+class BaseUserMediaListCreateAPIView(ListCreateAPIView):
+    serializer_class = BaseUserMediaSerializer
+
+    def get_queryset(self):
+        return self.request.user.usermedia_set.all()

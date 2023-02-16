@@ -1,4 +1,5 @@
-from medias.api.base.serializers import BaseMediaSerializer, BaseMediaBriefResponseSerializer, BaseGenreSerializer
+from medias.api.base.serializers import BaseMediaSerializer, BaseMediaBriefResponseSerializer, BaseGenreSerializer, \
+    BaseUserMediaSerializer
 
 
 class MediaSerializer(BaseMediaSerializer):
@@ -10,4 +11,8 @@ class MediaBriefResponseSerializer(BaseMediaBriefResponseSerializer):
 
 
 class GenreSerializer(BaseGenreSerializer):
+    pass
+
+
+class UserMediaSerializer(BaseUserMediaSerializer):
     pass

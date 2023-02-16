@@ -1,9 +1,14 @@
-from medias.api.base.views import BaseMediaListAPIView, BaseMediaRetrieveAPIView
+from medias.api.base.views import BaseMediaListAPIView, BaseMediaRetrieveAPIView, BaseUserMediaListCreateAPIView
+from medias.api.v1.serializers import MediaSerializer, MediaBriefResponseSerializer, UserMediaSerializer
 
 
 class MediaListCreateAPIView(BaseMediaListAPIView):
-    pass
+    serializer_class = MediaBriefResponseSerializer
 
 
 class MediaRetrieveAPIView(BaseMediaRetrieveAPIView):
-    pass
+    serializer_class = MediaSerializer
+
+
+class UserMediaListCreateAPIView(BaseUserMediaListCreateAPIView):
+    serializer_class = UserMediaSerializer
