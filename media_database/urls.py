@@ -19,6 +19,7 @@ from django.urls import path, include
 api_url_patterns = (
     [
         path('accounts/v1/', include('accounts.api.v1.urls')),
+        path('media/v1/', include('medias.api.v1.urls')),
     ]
 )
 

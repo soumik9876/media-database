@@ -6,7 +6,7 @@ from .models import *
 
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
-    list_display = ['title', 'type', 'initial_release', 'final_release', 'ratings', 'genre']
+    list_display = ['title', 'type', 'initial_release', 'final_release', 'ratings', 'genres']
     search_fields = ['title']
     list_filter = ['type']
 

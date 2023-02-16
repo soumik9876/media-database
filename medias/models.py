@@ -25,13 +25,13 @@ class Media(BaseModel):
     banner = models.URLField(max_length=255, verbose_name=_('Banner'), blank=True)
     trailer_link = models.URLField(verbose_name=_('Trailer link'), blank=True)
     # Dates
-    initial_release = models.DateTimeField(verbose_name=_('Initial release date'), blank=True, null=True)
-    final_release = models.DateTimeField(verbose_name=_('Final release date'), blank=True, null=True)
+    initial_release = models.DateField(verbose_name=_('Initial release date'), blank=True, null=True)
+    final_release = models.DateField(verbose_name=_('Final release date'), blank=True, null=True)
 
     user_rating = models.FloatField(verbose_name=_('User rating'), blank=True, default=0)
     rating_count = models.IntegerField(verbose_name=_('Rating count'), blank=True, default=0)
     watch_count = models.IntegerField(verbose_name=_('Watch count'), blank=True, default=0)
-    ratings = models.JSONField(verbose_name=_('Ratings'), blank=True)
+    ratings = models.JSONField(verbose_name=_('Ratings'), blank=True, default=dict)
     imdb_id = models.CharField(max_length=30, verbose_name=_('Imdb ID'), blank=True)
 
     extra = models.JSONField(verbose_name=_('Extra'), default=dict, blank=True)
@@ -46,7 +46,7 @@ class Media(BaseModel):
 
 class Genre(BaseModel):
     title = models.CharField(max_length=100, verbose_name=_('Title'))
-    movies = models.ManyToManyField(to=Media, verbose_name=_('Movies'))
+    medias = models.ManyToManyField(to=Media, verbose_name=_('Movies'))
 
     class Meta:
         verbose_name = _('Genre')
