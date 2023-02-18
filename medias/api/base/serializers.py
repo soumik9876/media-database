@@ -32,11 +32,15 @@ class BaseGenreSerializer(serializers.ModelSerializer):
 
 
 class BaseUserMediaSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField()
+    # user = serializers.SerializerMethodField()
 
     class Meta:
         model = UserMedia
         fields = '__all__'
 
-    def get_user(self, obj):
-        return self.context.get('request').user
+    def validate(self, attrs):
+        user = self.context.get('request').user
+        attrs.update({
+            'user': user
+        })
+        return attrs
