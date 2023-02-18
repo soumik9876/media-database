@@ -37,6 +37,11 @@ class BaseUserMediaSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMedia
         fields = '__all__'
+        extra_kwargs = {
+            'user': {
+                'required': False
+            }
+        }
 
     def validate(self, attrs):
         user = self.context.get('request').user
