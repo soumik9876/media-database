@@ -16,17 +16,22 @@ class Media(BaseModel):
     language = models.CharField(max_length=30, verbose_name=_('Language'), blank=True)
     region = models.CharField(max_length=30, verbose_name=_('Region'), blank=True)
     runtime = models.CharField(max_length=30, verbose_name=_('Runtime'), blank=True)
+    awards = models.TextField(verbose_name=_('Awards'), blank=True)
     type = models.CharField(max_length=15, verbose_name=_('Type'), blank=True, choices=Type.choices, default=Type.Movie)
+    box_office = models.CharField(max_length=50, verbose_name=_('Box Office'), blank=True)
 
+    # Crew
     director = models.CharField(max_length=100, verbose_name=_('Director'), blank=True)
     writers = models.TextField(verbose_name=_('Writers'), blank=True)
     cast = models.TextField(verbose_name=_('Cast'), blank=True)
 
+    # Medias
     banner = models.URLField(max_length=255, verbose_name=_('Banner'), blank=True)
     trailer_link = models.URLField(verbose_name=_('Trailer link'), blank=True)
+
     # Dates
-    initial_release = models.DateField(verbose_name=_('Initial release date'), blank=True, null=True)
-    final_release = models.DateField(verbose_name=_('Final release date'), blank=True, null=True)
+    initial_release = models.IntegerField(verbose_name=_('Initial release date'), blank=True, null=True)
+    final_release = models.IntegerField(verbose_name=_('Final release date'), blank=True, null=True)
 
     user_rating = models.FloatField(verbose_name=_('User rating'), blank=True, default=0)
     rating_count = models.IntegerField(verbose_name=_('Rating count'), blank=True, default=0)
