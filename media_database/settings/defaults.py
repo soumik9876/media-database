@@ -199,3 +199,6 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ]
 }
+
+OMDB_API_KEY = env.str('OMDB_API_KEY')
+OMDB_ROOT = env.str('OMDB_ROOT')
