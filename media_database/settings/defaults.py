@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'django_filters',
+    'corsheaders',
 
     # my apps
     'accounts',
@@ -61,7 +62,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -202,3 +205,4 @@ REST_FRAMEWORK = {
 
 OMDB_API_KEY = env.str('OMDB_API_KEY')
 OMDB_ROOT = env.str('OMDB_ROOT')
+CORS_ALLOW_ALL_ORIGINS = True
