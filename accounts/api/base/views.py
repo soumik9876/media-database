@@ -1,14 +1,15 @@
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-from django.utils import timezone
+from dj_rest_auth.registration.views import SocialLoginView
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
+
 from accounts.api.base.serializers import BaseUserSerializer, BaseGoogleLoginSerializer
-from accounts.models import User
 from core.utils import get_logger, get_debug_str
 
 logger = get_logger()
@@ -64,3 +65,7 @@ class BaseUserRetrieveAPIView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class BaseFacebookLoginAPIView(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
