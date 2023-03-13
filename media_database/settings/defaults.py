@@ -206,6 +206,24 @@ REST_FRAMEWORK = {
     ]
 }
 
+# All auth settings
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate', 'access_type': 'offline'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'friends'],
+        'VERSION': 'v2.4'
+    }
+}
+SOCIALACCOUNT_STORE_TOKENS = True
+
 OMDB_API_KEY = env.str('OMDB_API_KEY')
 OMDB_ROOT = env.str('OMDB_ROOT')
 CORS_ALLOW_ALL_ORIGINS = True
