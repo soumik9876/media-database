@@ -13,9 +13,9 @@ class Media(BaseModel):
 
     title = models.CharField(max_length=200, verbose_name=_('Media title'))
     plot = models.TextField(verbose_name=_('Plot'), blank=True)
-    language = models.CharField(max_length=30, verbose_name=_('Language'), blank=True)
-    region = models.CharField(max_length=30, verbose_name=_('Region'), blank=True)
-    runtime = models.CharField(max_length=30, verbose_name=_('Runtime'), blank=True)
+    language = models.CharField(max_length=250, verbose_name=_('Language'), blank=True)
+    region = models.CharField(max_length=250, verbose_name=_('Region'), blank=True)
+    runtime = models.CharField(max_length=50, verbose_name=_('Runtime'), blank=True)
     awards = models.TextField(verbose_name=_('Awards'), blank=True)
     type = models.CharField(max_length=15, verbose_name=_('Type'), blank=True, choices=Type.choices, default=Type.Movie)
     box_office = models.CharField(max_length=50, verbose_name=_('Box Office'), blank=True)

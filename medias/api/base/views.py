@@ -4,6 +4,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveAPIView, ListAPIV
     RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
+from core.api.paginations import StandardResultsSetPagination
 from core.api.permissions import IsObjectOwner
 from medias.api.base.serializers import BaseMediaBriefResponseSerializer, BaseMediaSerializer, BaseUserMediaSerializer
 from medias.api.filters import MediaFilter
@@ -13,6 +14,7 @@ from medias.models import Media, UserMedia
 class BaseMediaListAPIView(ListAPIView):
     serializer_class = BaseMediaBriefResponseSerializer
     filterset_class = MediaFilter
+    pagination_class = StandardResultsSetPagination
 
     # filter_backends = [filters.SearchFilter]
     # search_fields = ['title']

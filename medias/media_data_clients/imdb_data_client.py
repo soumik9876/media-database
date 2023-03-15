@@ -77,7 +77,7 @@ class ImdbDataClient:
             final_release = int(year[1])
         except:
             final_release = None
-        runtime = response.get('runtime', '')
+        runtime = response.get('Runtime', '')
         genres = response.get('Genre', '').split(',')
         director = response.get('Director', '')
         writer = response.get('Writer', '')
