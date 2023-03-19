@@ -51,7 +51,7 @@ class ImdbDataClient:
         for media in medias:
             try:
                 if not Media.objects.filter(imdb_id=media[0]).exists():
-                    new_media = self.create_media(media[0])
+                    new_media = self.create_media(media[0], num_votes=media[2])
                     print(new_media)
                     cnt += 1
             except Exception as e:
@@ -64,7 +64,7 @@ class ImdbDataClient:
         response = requests.get(f'{OMDB_ROOT}?apiKey={OMDB_API_KEY}&i={imdb_id}&plot=full').json()
         return response
 
-    def create_media(self, media_id):
+    def create_media(self, media_id, num_votes=None):
         response = self.get_media_details_from_omdb(imdb_id=media_id)
         title = response.get('Title', '')
         year = response.get('Year', '').split('–')
@@ -132,7 +132,10 @@ class ImdbDataClient:
                     'metacritic': meta_score,
                     'rotten_tomato': rotten_tomato
                 },
-                imdb_id=imdb_id
+                imdb_id=imdb_id,
+                extra={
+                    'imdbVotes': int(num_votes)
+                }
             )
         except Exception as e:
             print(f'Media object create error --> {e}')

@@ -20,7 +20,7 @@ class BaseMediaListAPIView(ListAPIView):
     # search_fields = ['title']
 
     def get_queryset(self):
-        return Media.objects.all()
+        return Media.objects.order_by('-extra__imdbVotes -ratings__imdb')
 
 
 class BaseMediaRetrieveAPIView(RetrieveAPIView):
