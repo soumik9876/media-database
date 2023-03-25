@@ -15,8 +15,15 @@ class User(AbstractUser):
     def get_full_name(self):
         return super().get_full_name()
 
-    def get_google_profile_data(self):
-        social_account = SocialAccount.objects.filter(user=self).first()
+    def get_facebook_picture(self):
+        return self.get_social_profile_data(provider='facebook').get('picture', {}).get('data', {}).get('url', '')
+
+    def get_social_account(self, provider='facebook'):
+        return SocialAccount.objects.filter(user=self,
+                                            provider=provider).first()
+
+    def get_social_profile_data(self, provider='facebook'):
+        social_account = self.get_social_account(provider=provider)
         try:
             return social_account.extra_data
         except (AttributeError, Exception):

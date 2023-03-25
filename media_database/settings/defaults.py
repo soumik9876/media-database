@@ -191,7 +191,7 @@ AUTHENTICATION_BACKENDS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_RENDERER_CLASSES': [
@@ -216,6 +216,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'id',
             'email',
             'name',
+            'picture.type(large)',
             'first_name',
             'last_name',
             'friends'],

@@ -127,22 +127,21 @@ class BaseGoogleLoginSerializer(serializers.Serializer):
 # noinspection PyMethodMayBeStatic
 class BaseUserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(label=_('Name'))
-    picture = serializers.SerializerMethodField(label=_('Photo URL'))
+    facebook_picture = serializers.SerializerMethodField(label=_('Photo URL'))
     is_superuser = serializers.BooleanField(read_only=True)
 
     class Meta:
         model = User
         fields = [
-            'id', 'username', 'name', 'first_name', 'last_name', 'email', 'picture', 'is_superuser'
+            'id', 'username', 'name', 'first_name', 'last_name', 'email', 'facebook_picture', 'is_superuser'
         ]
 
     def get_name(self, obj: User):
-        google_profile = obj.get_google_profile_data()
-        return google_profile.get('name')
+        social_profile = obj.get_social_profile_data()
+        return social_profile.get('name')
 
-    def get_picture(self, obj: User):
-        google_profile = obj.get_google_profile_data()
-        return google_profile.get('picture')
+    def get_facebook_picture(self, obj: User):
+        return obj.get_facebook_picture()
 
     def update(self, instance, validated_data):
         return validated_data
