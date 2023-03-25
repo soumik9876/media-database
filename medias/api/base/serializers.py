@@ -11,7 +11,7 @@ class BaseMediaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_genre(self, obj: Media):
-        genre_list = list(obj.genre_set.all().values_list('title'))
+        genre_list = list(obj.genre_set.all().values_list('title', flat=True))
         return ','.join(genre_list)
 
 
